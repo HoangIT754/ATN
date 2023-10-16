@@ -1,0 +1,129 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ATN toys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="">
+    <nav class="justify-content-center navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Dasboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Add</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">List
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center">Revenue form</h1>
+        <form action="/quotes" method="POST">
+            <h3>Month</h3>
+            <select name="month" class="form-select">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select><br><br>
+            <h3>Store</h3>
+            <select name="store" class="form-select">
+                <option value="HN">Store Ha Noi</option>
+                <option value="DN">Store Da Nang</option>
+                <option value="NT">Store Nha Trang</option>
+                <option value="DL">Store Da Lat</option>
+                <option value="HCM">Store Ho Chi Minh</option>
+                <option value="PQ">Store Phu Quoc</option>
+            </select><br><br>
+            <h3>Revenue of the Month</h3>
+            <input type="number" name="revenue" placeholder="Enter revenue" class="form-control">
+            <br>
+            <button type="submit" class="mt-5 btn btn-primary">Submit</button>
+        </form>
+        
+        <h2 class="text-center mt-5 mb-3"> Revenue List </h2>
+        <table class="quotes table table-striped">
+            <tr>
+                <th>No</th>
+                <th>ID</th>
+                <th>Store</th>
+                <th>Month</th>
+                <th>Revenue</th>
+                
+            </tr>
+            <% var j=1 %>
+                <% for(var i=0; i < quotes.length; i++) {%>
+                    <tr>
+                        <form action="/TableInfo" method="post">
+                            <td><%= j++ %></td>
+                            <td name="id"><%= quotes[i]._id %></td>
+                            <td>
+                                <% if(quotes[i].store == "HN") {%>
+                                    Ha Noi
+                                <% } %>
+                                <% if(quotes[i].store == "DN") {%>
+                                    Da Nang
+                                <% } %>
+                                <% if(quotes[i].store == "NT") {%>
+                                    Nha Trang
+                                <% } %>
+                                <% if(quotes[i].store == "DL") {%>
+                                    Da Lat
+                                <% } %>
+                                <% if(quotes[i].store == "HCM") {%>
+                                    Ho Chi Minh
+                                <% } %>
+                                <% if(quotes[i].store == "PQ") {%>
+                                    Phu Quoc
+                                <% } %>
+                            </td>
+                            <td><%= quotes[i].month %></td>
+                            <td><%= quotes[i].revenue %>$</td>
+                        </form>
+                    </tr>
+                <% } %>
+        </table>
+    </div>
+    <footer class="text-center mt-5 text-light bg-dark">
+        <br>
+        <h3 class="text-center mb-4 text-primary">ANT Company</h3>
+        <div class="row mb-5">
+            <div class="col-md-6 text-center">
+                <h4 class="text-primary">About Us</h4>
+                <div>Professional toy Company</div>
+                <div>The best Toy Company in Viet Nam</div>
+            </div>
+            <div class="col-md-6 text-center">
+                <h4 class="text-primary">Store</h4>
+                <div>Ha Noi</div>
+                <div>Da Nang</div>
+                <div>Nha Trang</div>
+                <div>Da Lat</div>
+                <div>Ho Chi Minh</div>
+                <div>Phu Quoc</div>
+            </div>
+        </div>
+        <div class="text-center">© Copyright 2023 ATN Company</div>
+    </footer>
+</body>
+
+</html>
